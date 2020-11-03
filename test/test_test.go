@@ -8,4 +8,5 @@ import (
 
 var _ = Describe("Test", func() {
 	fmt.Println(os.Getenv("KUBECONFIG"))
+	// master
 })
