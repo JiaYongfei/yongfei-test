@@ -16,6 +16,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - name: Test
+    - name: Test1
+      run: echo contains(toJson(github.event.head_commit.message), 'one') || contains(toJson(github.event.head_commit.message), 'two') || contains(toJson(github.event.head_commit.message), 'three')
+    - name: Test2
+      run: echo $key
+    - name: Test3
       if: contains(toJson(github.event.head_commit.message), 'one') || contains(toJson(github.event.head_commit.message), 'two') || contains(toJson(github.event.head_commit.message), 'three')
       run: echo $key
