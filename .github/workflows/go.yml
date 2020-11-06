@@ -8,6 +8,7 @@ on:
 
 env:
   key: ${{github.event.head_commit.message}}
+  key2: ${{github.event.pull_request.title}}
 
 jobs:
 
@@ -18,5 +19,7 @@ jobs:
     - name: Test2
       run: echo $key
     - name: Test3
-      if: contains(toJson(github.event.head_commit.message), 'one') || contains(toJson(github.event.head_commit.message), 'two') || contains(toJson(github.event.head_commit.message), 'three')
+      run: echo $key2
+    - name: Test4
+      if: contains(toJson(github.event.head_commit.message), 'one') || contains(toJson(github.event.head_commit.message), 'two') || contains(toJson(github.event.pull_request.title), 'two')
       run: echo $key
