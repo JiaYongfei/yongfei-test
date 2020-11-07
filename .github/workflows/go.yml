@@ -2,13 +2,12 @@ name: Go
 
 on:
   push:
-    branches: [ JiaYongfei-patch-3 ]
+    branches: [ JiaYongfei-patch-4-1 ]
   pull_request:
-    branches: [ JiaYongfei-patch-3 ]
+    branches: [ JiaYongfei-patch-4-1 ]
 
 env:
-  key: ${{github.event.head_commit.message}}
-  key2: ${{github.event.pull_request.title}}
+  key: join((${{github.event.head_commit.message}},${{github.event.pull_request.title}},${{github.event.pull_request.body}}),";")
 
 jobs:
 
@@ -16,10 +15,8 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-    - name: Test2
+    - name: Test
       run: echo $key
-    - name: Test3
-      run: echo $key2
     - name: Test4
-      if: contains(toJson(github.event.head_commit.message), 'one') || contains(toJson(github.event.head_commit.message), 'two') || contains(toJson(github.event.pull_request.title), 'two') || contains(toJson(github.event.pull_request.body), 'two')
+      if: contains($key, 'one') || contains($key, 'two')
       run: echo $key2
