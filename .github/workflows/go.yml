@@ -2,9 +2,9 @@ name: Go
 
 on:
   push:
-    branches: [ main ]
+    branches: [ JiaYongfei-patch-3 ]
   pull_request:
-    branches: [ main ]
+    branches: [ JiaYongfei-patch-3 ]
 
 env:
   key: ${{github.event.head_commit.message}}
@@ -21,5 +21,5 @@ jobs:
     - name: Test3
       run: echo $key2
     - name: Test4
-      if: contains(toJson(github.event.head_commit.message), 'one') || contains(toJson(github.event.head_commit.message), 'two') || contains(toJson(github.event.pull_request.title), 'two')
+      if: contains(toJson(github.event.head_commit.message), 'one') || contains(toJson(github.event.head_commit.message), 'two') || contains(toJson(github.event.pull_request.title), 'two') || contains(toJson(github.event.pull_request.body), 'two')
       run: echo $key2
