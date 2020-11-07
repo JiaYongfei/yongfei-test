@@ -2,9 +2,9 @@ name: Go
 
 on:
   push:
-    branches: [ JiaYongfei-patch-5 ]
+    branches: [ JiaYongfei-patch-6 ]
   pull_request:
-    branches: [ JiaYongfei-patch-5 ]
+    branches: [ JiaYongfei-patch-6 ]
 
 env:
   key: join((${{github.event.head_commit.message}},${{github.event.pull_request.title}},${{github.event.pull_request.body}}),";")
@@ -18,5 +18,5 @@ jobs:
     - name: Test
       run: echo $key
     - name: Test4
-      if: contains(key, 'one') || contains(key, 'two')
+      if: contains(env.key, 'one') || contains(env.key, 'two')
       run: echo 'success'
