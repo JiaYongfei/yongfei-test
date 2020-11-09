@@ -2,12 +2,12 @@ name: Go
 
 on:
   push:
-    branches: [ JiaYongfei-patch-7 ]
+    branches: [ JiaYongfei-patch-8 ]
   pull_request:
-    branches: [ JiaYongfei-patch-7 ]
+    branches: [ JiaYongfei-patch-8 ]
 
 env:
-  key: (${{github.event.head_commit.message}},${{github.event.pull_request.title}},${{github.event.pull_request.body}}
+  key: ${{github.event.head_commit.message}},${{github.event.pull_request.title}},${{github.event.pull_request.body}}
 
 jobs:
 
