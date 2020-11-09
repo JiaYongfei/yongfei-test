@@ -2,9 +2,9 @@ name: Go
 
 on:
   push:
-    branches: [ JiaYongfei-patch-8 ]
+    branches: [ JiaYongfei-patch-9 ]
   pull_request:
-    branches: [ JiaYongfei-patch-8 ]
+    branches: [ JiaYongfei-patch-9 ]
 
 env:
   key: ${{github.event.head_commit.message}},${{github.event.pull_request.title}},${{github.event.pull_request.body}}
@@ -13,6 +13,8 @@ jobs:
 
   build:
     name: Build
+    env:
+      kkk: sddd
     runs-on: ubuntu-latest
     steps:
     - name: Test
