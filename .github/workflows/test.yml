@@ -1,0 +1,14 @@
+name: Go
+
+on:
+  repository_dispatch:
+    types: [release]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      run: echo "Done"
