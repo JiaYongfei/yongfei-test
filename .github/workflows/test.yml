@@ -2,6 +2,11 @@ name: manual
 
 on:
   workflow_dispatch:
+    inputs:
+      commit:
+        description: 'Commit'
+        required: false
+        default: 'default'
   repository_dispatch:
     types: [release]
 
@@ -12,4 +17,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build
-      run: go test ./test
+      run: |
+        echo "Hello ${{ github.event.inputs.commit }}!"
+        go test -v ./test
+        echo "Done"
