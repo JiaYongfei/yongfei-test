@@ -6,7 +6,7 @@ on:
       commit:
         description: 'Commit'
         required: false
-        default: 'default'
+        default: $GITHUB_SHA
   repository_dispatch:
     types: [release]
 
@@ -16,6 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.inputs.commit }}
     - name: Build
       run: |
         echo "Hello ${{ github.event.inputs.commit }}!"
