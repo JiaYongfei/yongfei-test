@@ -6,7 +6,7 @@ on:
       commit:
         description: 'Commit'
         required: false
-        default: $GITHUB_SHA
+        default: ''
   repository_dispatch:
     types: [release]
 
