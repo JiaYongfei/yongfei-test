@@ -21,6 +21,7 @@ jobs:
     - name: Build
       run: |
         echo "Hello ${{ github.event.inputs.commit }}!"
+        env
         ./test.sh
         go test -v ./test
         echo "Done"
