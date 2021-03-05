@@ -1,3 +1,3 @@
 # yongfei-test
 
-![example workflow](https://github.com/github/docs/actions/workflows/test.yml/badge.svg)
+![yongfei-test](https://github.com/JiaYongfei/yongfei-test/actions/workflows/test.yml/badge.svg)
