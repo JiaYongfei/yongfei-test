@@ -23,12 +23,13 @@ jobs:
     - uses: actions/checkout@v2
       with:
         ref: ${{ github.event.inputs.commit }}
-    - if: ${{github.event_name}} = "push"
+    - if: ${{github.event_name == 'push'}}
       name: Set env
       run: echo "VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
     - name: Build
       run: |
         echo "Hello event name: ${{github.event_name}}"
+        echo "Hello event name: ${{github.event.action}}"
         echo "Hello input: ${{ github.event.inputs.commit }}!"
         echo "Hello env version: ${{ env.VERSION }}!"
   #      ./test.sh
@@ -40,4 +41,4 @@ jobs:
     needs: release
     steps:
     - name: Test
-      run: echo ${{ env.VERSION }}
+      run: echo ${ env.VERSION }
