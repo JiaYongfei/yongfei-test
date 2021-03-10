@@ -23,16 +23,15 @@ jobs:
       with:
         ref: ${{ github.event.inputs.commit }}
     - name: Set env
-      run: echo "VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      run: if github.event_name = "push"; then echo "VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV; else echo "VERSION=${github.sha}" >> $GITHUB_ENV
     - name: Build
       run: |
         echo "Hello event name: ${{github.event_name}}"
         echo "Hello input: ${{ github.event.inputs.commit }}!"
         echo "Hello env version: ${{ env.VERSION }}!"
-        env
-        ./test.sh
-        go test -v ./test
-        echo "Done"
+  #      ./test.sh
+  #      go test -v ./test
+  #      echo "Done"
   
   release1:
     runs-on: ubuntu-latest
