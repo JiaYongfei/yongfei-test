@@ -12,8 +12,6 @@ on:
   push:
     tags:
       - 'v*.*.*'
-    branches:
-      - main
 env:
   VERSION: ${{ github.sha }}
 
@@ -25,7 +23,7 @@ jobs:
       with:
         ref: ${{ github.event.inputs.commit }}
     - name: Set env
-      run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+      run: echo "VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
     - name: Build
       run: |
         echo "Hello event path: ${{github.event_path}}"
