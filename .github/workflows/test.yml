@@ -14,7 +14,7 @@ on:
       - 'v*.*.*'
 
 env:
-  VERSION: ${github.sha}
+  VERSION: ${{ github.sha }}
 
 jobs:
   release:
@@ -41,4 +41,4 @@ jobs:
     needs: release
     steps:
     - name: Test
-      run: echo ${ env.VERSION }
+      run: echo ${{ env.VERSION }}
