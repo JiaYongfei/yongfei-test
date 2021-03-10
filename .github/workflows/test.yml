@@ -6,9 +6,11 @@ on:
       commit:
         description: 'Commit'
         required: false
-        default: ''
+        default: ${{ github.sha }}
   repository_dispatch:
     types: [release]
+env:
+  VERSION: ${{ github.event.inputs.commit }}
 
 jobs:
 
