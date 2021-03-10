@@ -12,8 +12,6 @@ on:
   push:
     tags:
       - 'v*.*.*'
-env:
-  VERSION: ${{ github.sha }}
 
 jobs:
   release:
@@ -23,7 +21,7 @@ jobs:
       with:
         ref: ${{ github.event.inputs.commit }}
     - name: Set env
-      run: if github.event_name = "push"; then echo "VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV; else echo "VERSION=${github.sha}" >> $GITHUB_ENV
+      run: if github.event_name = "push"; then echo "VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV; else echo "VERSION=${github.sha}" >> $GITHUB_ENV; fi
     - name: Build
       run: |
         echo "Hello event name: ${{github.event_name}}"
