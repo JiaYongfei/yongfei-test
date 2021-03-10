@@ -22,7 +22,8 @@ jobs:
         ref: ${{ github.event.inputs.commit }}
     - name: Build
       run: |
-        echo "Hello ${{ github.event.inputs.commit }}!"
+        echo "Hello input: ${{ github.event.inputs.commit }}!"
+        echo "Hello env version: ${{ env.VERSION }}!"
         env
         ./test.sh
         go test -v ./test
