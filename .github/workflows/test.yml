@@ -26,6 +26,7 @@ jobs:
       run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
     - name: Build
       run: |
+        echo "Hello event path: ${{github.event_path}}"
         echo "Hello input: ${{ github.event.inputs.commit }}!"
         echo "Hello env version: ${{ env.VERSION }}!"
         env
