@@ -13,6 +13,7 @@ on:
     tags:
       - 'v*.*.*'
 
+
 env:
   VERSION: ${{ github.sha }}
 
