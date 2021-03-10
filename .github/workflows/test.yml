@@ -12,6 +12,8 @@ on:
   push:
     tags:
       - 'v*.*.*'
+    branches:
+      - main
 env:
   VERSION: ${{ github.sha }}
 
