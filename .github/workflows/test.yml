@@ -6,7 +6,7 @@ on:
       commit:
         description: 'Commit'
         required: false
-        default: ${{ github.sha }}
+        default: ''
   repository_dispatch:
     types: [release]
 env:
