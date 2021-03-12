@@ -13,8 +13,8 @@ on:
     tags:
       - 'v*.*.*'
 
-env:
-  VERSION: ${{ github.event.inputs.commit }}
+# env:
+#   VERSION: ${{ github.event.inputs.commit }}
 
 jobs:
   release:
