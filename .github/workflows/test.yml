@@ -4,32 +4,26 @@ on:
   workflow_dispatch:
     inputs:
       commit:
-        description: 'Commit'
+        description: 'Commit or Tag'
         required: false
         default: ''
   repository_dispatch:
     types: [release]
-  push:
-    tags:
-      - 'v*.*.*'
-
 
 env:
-  VERSION: ${{ github.sha }}
+  VERSION: ${{ github.event.inputs.commit }}
+
 
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-    - if: ${{ github.event.inputs.commit != '' }}
+    - if: ${{ github.event.inputs.commit == '' }}
       name: Set env
-      run: echo "VERSION=${{ github.event.inputs.commit }}" >> $GITHUB_ENV
-    - if: ${{github.event_name == 'push'}}
-      name: Set env
-      run: echo "VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      run: echo "VERSION=${{ github.sha }}" >> $GITHUB_ENV
     - uses: actions/checkout@v2
       with:
-        ref: ${{ env.VERSION }}
+        ref: ${{ github.event.inputs.commit }}
     - name: Build
       run: |
         echo "Hello event name: ${{github.event_name}}!"
