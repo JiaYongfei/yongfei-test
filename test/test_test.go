@@ -12,7 +12,7 @@ var _ = Describe("Test", func() {
 		fmt.Println("-----------")
 		data := os.Getenv("VERSION")
 		klog.Info(data)
-		klog.Info("newnewnewlalalalalooooooo")
+		klog.Info("newnewnewlalalalaloooooooppppppppp")
 		if data == "a" {
 			fmt.Println("true")
 		}
