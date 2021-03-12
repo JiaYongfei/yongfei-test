@@ -9,21 +9,26 @@ on:
         default: ''
   repository_dispatch:
     types: [release]
+  push: 
+    tags:
+      - 'v*.*.*'
 
 env:
   VERSION: ${{ github.event.inputs.commit }}
-
 
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
+    - if: ${{github.event_name == 'push'}}
+      name: Set tag as version
+      run: echo "VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
     - if: ${{ github.event.inputs.commit == '' }}
-      name: Set env
+      name: Set defult version
       run: echo "VERSION=${{ github.sha }}" >> $GITHUB_ENV
     - uses: actions/checkout@v2
       with:
-        ref: ${{ github.event.inputs.commit }}
+        ref: ${{ env.VERSION }}
     - name: Build
       run: |
         echo "Hello event name: ${{github.event_name}}!"
