@@ -20,12 +20,21 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-    - if: ${{github.event_name == 'push'}}
-      name: Set tag as version
-      run: echo "VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-    - if: ${{ github.event.inputs.commit == '' }}
-      name: Set defult version
-      run: echo "VERSION=${{ github.sha }}" >> $GITHUB_ENV
+#     - if: ${{github.event_name == 'push'}}
+#       name: Set tag as version
+#       run: echo "VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+#     - if: ${{ github.event.inputs.commit == '' }}
+#       name: Set defult version
+#       run: echo "VERSION=${{ github.sha }}" >> $GITHUB_ENV
+    - name: Set defult version
+      run: |
+        if ${{github.event_name == 'push'}}; then
+          echo "VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+        elif ${{ github.event.inputs.commit != '' }}; then
+          echo "VERSION=${{ github.event.inputs.commit }}" >> $GITHUB_ENV
+        else
+          echo "VERSION=${{ github.sha }}" >> $GITHUB_ENV
+        fi
     - uses: actions/checkout@v2
       with:
         ref: ${{ env.VERSION }}
