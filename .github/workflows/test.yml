@@ -31,8 +31,8 @@ jobs:
         echo "Hello input: ${{ github.event.inputs.commit }}!"
         echo "Hello env version: ${{ env.VERSION }}!"
         echo "Hello github sha: ${{ github.sha }}!"
-  #      ./test.sh
-  #      go test -v ./test
+        ./test.sh
+        go test -v ./test
   #      echo "Done"
   
   release1:
